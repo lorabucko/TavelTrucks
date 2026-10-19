@@ -1,0 +1,12 @@
+.header { background: var(--surface); height: 72px; flex-shrink: 0; }
+.inner { width: min(100% - 128px, 1312px); margin: auto; height: 100%; display: flex; align-items: center; position: relative; }
+.logo { font-size: 20px; font-weight: 800; letter-spacing: -.5px; }
+.logo span { color: var(--text); }
+.nav { display: flex; gap: 32px; position: absolute; left: 50%; transform: translateX(-50%); font-weight: 500; }
+.nav a { transition: color .2s; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--accent); }
+@media(max-width: 700px) {
+  .inner { width: calc(100% - 40px); justify-content: space-between; }
+  .nav { position: static; transform: none; gap: 24px; }
+  .logo { font-size: 18px; }
+}

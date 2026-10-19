@@ -1,0 +1,16 @@
+.booking { border: 1px solid var(--line); border-radius: 16px; padding: 40px 56px; align-self: start; }
+.booking h2 { font-size: 20px; line-height: 24px; }
+.subtitle { margin-top: 8px; color: var(--muted); margin-bottom: 24px; }
+.booking form { display: grid; gap: 14px; }
+.field input { width: 100%; padding: 18px; border: 1px solid transparent; border-radius: 12px; background: var(--surface); color: var(--ink); min-height: 60px; }
+.field input::placeholder { color: var(--muted); opacity: 1; }
+.field input[aria-invalid="true"] { border-color: #be3232; }
+.booking button[type="submit"] { width: 100%; margin-top: 10px; }
+.error { font-size: 14px; color: #b42318; margin-top: 5px; }
+.toast { position: fixed; bottom: 28px; right: 28px; z-index: 30; display: flex; align-items: flex-start; gap: 16px; width: min(480px, calc(100% - 40px)); padding: 24px; border: 1px solid var(--accent); background: #fff; border-radius: 16px; box-shadow: 0 8px 40px #10182820; }
+.toast > svg { color: var(--accent-hover); flex-shrink: 0; }
+.toast strong { font-size: 16px; }
+.toast p { font-size: 14px; margin-top: 6px; color: var(--text); }
+.toast button { padding: 0; border: 0; background: transparent; color: var(--text); margin-left: auto; }
+@media(max-width: 1100px) { .booking { padding: 32px; } }
+@media(max-width: 700px) { .booking { padding: 24px; } .toast { right: 20px; bottom: 20px; padding: 20px; } }

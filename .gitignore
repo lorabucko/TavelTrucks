@@ -1,0 +1,10 @@
+/ProjectDocs/
+node_modules/
+.next/
+.next-preview/
+out/
+.vercel/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts

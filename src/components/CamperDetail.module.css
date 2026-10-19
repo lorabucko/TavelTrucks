@@ -1,0 +1,30 @@
+.page { padding-top: 64px; padding-bottom: 160px; }
+.top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: 24px; align-items: start; }
+.info { display: grid; gap: 16px; }
+.summary, .specs { background: var(--surface); border-radius: 20px; padding: 24px; }
+.summary h1 { font-size: var(--text-lg); margin-bottom: 8px; }
+.price { font-weight: 600; font-size: var(--text-lg); margin-top: 16px; }
+.description { margin-top: 24px; color: var(--text); }
+.specs h2 { font-size: var(--text-lg); margin-bottom: 16px; }
+.specs dl { border-top: 1px solid var(--line); margin: 16px 0 0; padding-top: 16px; }
+.specs dl > div { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+.specs dl > div:last-child { margin-bottom: 0; }
+.specs dt, .specs dd { margin: 0; }
+.specs dd { text-align: right; }
+.reviewsHeading { font-size: var(--text-lg); margin-top: 88px; margin-bottom: 24px; scroll-margin-top: 24px; }
+.bottom { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.03fr); gap: 48px; }
+.reviews { display: flex; flex-direction: column; gap: 24px; }
+.review { background: var(--surface); padding: 16px; border-radius: 16px; }
+.reviewTop { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+.reviewTop h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.avatar { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: white; color: var(--accent-hover); font-size: var(--text-lg); font-weight: 600; flex-shrink: 0; }
+.review > p { color: var(--text); }
+.noReviews, .reviewLoading { padding: 32px; border-radius: 16px; background: var(--surface); color: var(--text); }
+@media(max-width: 1000px) { .bottom { gap: 24px; } .page { padding-top: 40px; } }
+@media(max-width: 700px) {
+  .page { padding-top: 24px; padding-bottom: 60px; }
+  .top, .bottom { grid-template-columns: 1fr; gap: 24px; }
+  .summary, .specs { padding: 24px 20px; }
+  .summary h1 { font-size: 24px; }
+  .reviewsHeading { margin-top: 48px; }
+}
