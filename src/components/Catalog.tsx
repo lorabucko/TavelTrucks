@@ -57,8 +57,19 @@ export default function Catalog() {
       </div>
       {query.isPending && Array.from({ length: 4 }, (_, i) => <div key={i} className={s.skeleton}><div /><span /><span /><span /></div>)}
       {query.isError && !query.data && <ErrorState message={query.error.message} retry={() => query.refetch()} />}
-      {!query.isPending && !query.isError && campers.length === 0 && <div className={s.empty}>
-        <BsMap size={36} aria-hidden="true" /><h2>No campers found</h2><p>Try another location or clear your filters to explore more options.</p><button onClick={clear} className="button">Clear filters</button>
+      {!query.isPending && !query.isError && campers.length === 0 && 
+      <div className={s.empty}>
+        <img
+  src="/error-image.png"
+  className={s.emptyImage}
+  alt=""
+  aria-hidden="true"
+/>
+        <h2>No campers found</h2>
+        <p>We couldn`t find any campers that match your filters.Try adjusting your search or clearing some filters.</p>
+        <div className={s.emptyActions}><button type="button" className="button button-outline" onClick={clear}><BsX size={22} aria-hidden="true" />Clear filters</button>
+        <button type="button" onClick={() => {window.location.href = "https://tavel-trucks-nu.vercel.app/catalog/";}} className="button">View all campers</button>
+      </div>
       </div>}
       {campers.map(camper => <article className={s.card} key={camper.id}>
         <img className={s.cover} src={camper.coverImage} alt={camper.name} loading="lazy" />

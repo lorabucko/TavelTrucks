@@ -1,69 +1,333 @@
-.layout { display: grid; grid-template-columns: 360px minmax(0,1fr); gap: 64px; padding-top: 48px; padding-bottom: 52px; align-items: start; }
-.sidebar { background: var(--surface); border-radius: 20px; padding: 24px; }
-.locationLabel { display: block; margin-bottom: 8px; color: var(--muted); }
-.location { display: flex; align-items: center; gap: 8px; border-radius: 12px; background: #fff; padding: 16px 18px; }
-.location svg { width: 20px; height: 20px; flex-shrink: 0; }
-.location input { min-width: 0; width: 100%; border: none; background: transparent; color: var(--ink); outline-offset: 6px; }
-.location input::placeholder { color: var(--muted); }
-.sidebar h2 { font-size: 20px; margin-top: 40px; margin-bottom: 24px; }
-.group { padding: 0; border: 0; margin: 0 0 24px; min-width: 0; }
-.group legend { color: var(--muted); margin-bottom: 8px; padding: 0; }
-.radio { display: flex; align-items: center; gap: 8px; width: fit-content; cursor: pointer; line-height: 24px; margin-bottom: 8px; }
-.radio:last-child { margin-bottom: 0; }
-.radio input { appearance: none; width: 24px; height: 24px; border: 1px solid var(--text); border-radius: 50%; margin: 0; display: grid; place-content: center; cursor: pointer; flex-shrink: 0; }
-.radio input::before { content: ""; width: 16px; height: 16px; background: var(--text); border-radius: 50%; transform: scale(0); }
-.radio input:checked::before { transform: scale(1); }
-.actions { display: grid; gap: 16px; margin-top: 48px; }
-.actions button { width: 100%; padding-inline: 16px; font-weight: 400; }
-.results { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
-.card { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: 24px; padding: 24px; border-radius: 20px; background: var(--surface); }
-.cover { width: 220px; height: 240px; border-radius: 14px; object-fit: cover; }
-.cardBody { min-width: 0; }
-.cardHeading { display: flex; justify-content: space-between; align-items: start; gap: 12px; margin-bottom: 8px; }
-.cardHeading h2, .cardHeading > span { font-size: var(--text-lg); font-weight: 600; line-height: 32px; }
-.cardHeading h2 { overflow-wrap: anywhere; }
-.cardHeading > span { white-space: nowrap; }
-.description { margin-top: 24px; margin-bottom: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
-.more { margin-top: 24px; min-width: 173px; }
-.loadMore { display: flex; justify-content: center; padding-top: 8px; }
-.loadMore button { padding-inline: 32px; }
-.empty { text-align: center; padding: 80px 30px; background: var(--surface); border-radius: 20px; }
-.empty > svg { color: var(--accent); margin-bottom: 20px; }
-.empty h2 { font-size: var(--text-lg); }
-.empty p { margin: 16px 0 24px; color: var(--text); }
-.skeleton { min-height: 312px; border-radius: 20px; background: var(--surface); padding: 24px; display: grid; grid-template-columns: 220px 1fr; gap: 20px; }
-.skeleton div, .skeleton span { background: #e8e9eb; border-radius: 12px; animation: pulse 1.5s ease-in-out infinite alternate; }
-.skeleton div { grid-row: span 3; }
-.skeleton span { height: 36px; }
-@keyframes pulse { to { opacity: .4; } }
-@media(min-width: 1280px) { .card { min-height: 312px; } }
-@media(max-width: 1279px) {
-  .layout { grid-template-columns: 280px minmax(0,1fr); gap: 32px; }
-  .card { grid-template-columns: 180px minmax(0,1fr); gap: 20px; }
-  .cover { width: 180px; height: 100%; min-height: 240px; }
-  .cardHeading { flex-direction: column; gap: 4px; }
-  .cardHeading h2, .cardHeading > span { font-size: 20px; line-height: 28px; }
+.layout {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 64px;
+  padding-top: 48px;
+  padding-bottom: 52px;
+  align-items: start;
 }
-@media(max-width: 900px) {
-  .layout { grid-template-columns: 230px minmax(0,1fr); gap: 24px; }
-  .sidebar { padding: 20px; }
-  .card { grid-template-columns: 1fr; }
-  .cover { width: 100%; height: 220px; min-height: 0; }
-  .cardHeading { flex-direction: row; }
+.sidebar {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 24px;
 }
-@media(max-width: 700px) {
-  .layout { grid-template-columns: 1fr; padding-top: 24px; gap: 24px; }
-  .sidebar form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; }
-  .locationLabel, .location, .sidebar h2, .actions { grid-column: 1 / -1; }
-  .locationLabel { margin-bottom: -8px; }
-  .sidebar h2 { margin: 8px 0 0; }
-  .group { margin: 0; }
-  .actions { margin-top: 8px; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .actions button { padding-inline: 8px; font-size: 14px; }
-  .card { padding: 20px; gap: 20px; }
-  .cover { height: 240px; }
-  .cardHeading { flex-direction: column; }
-  .description { margin-block: 20px; }
-  .more { margin-top: 20px; }
-  .skeleton { grid-template-columns: 1fr; }
+.locationLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px 18px;
+}
+.location svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.location input {
+  min-width: 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  outline-offset: 6px;
+}
+.location input::placeholder {
+  color: var(--muted);
+}
+.sidebar h2 {
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+.group {
+  padding: 0;
+  border: 0;
+  margin: 0 0 24px;
+  min-width: 0;
+}
+.group legend {
+  color: var(--muted);
+  margin-bottom: 8px;
+  padding: 0;
+}
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  cursor: pointer;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+.radio:last-child {
+  margin-bottom: 0;
+}
+.radio input {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  margin: 0;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.radio input::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: var(--text);
+  border-radius: 50%;
+  transform: scale(0);
+}
+.radio input:checked::before {
+  transform: scale(1);
+}
+.actions {
+  display: grid;
+  gap: 16px;
+  margin-top: 48px;
+}
+.actions button {
+  width: 100%;
+  padding-inline: 16px;
+  font-weight: 400;
+}
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+.card {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--surface);
+}
+.cover {
+  width: 220px;
+  height: 240px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+.cardBody {
+  min-width: 0;
+}
+.cardHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.cardHeading h2,
+.cardHeading > span {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 32px;
+}
+.cardHeading h2 {
+  overflow-wrap: anywhere;
+}
+.cardHeading > span {
+  white-space: nowrap;
+}
+.description {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+.more {
+  margin-top: 24px;
+  min-width: 173px;
+}
+.loadMore {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+.loadMore button {
+  padding-inline: 32px;
+}
+.empty {
+  text-align: center;
+  padding: 80px 30px;
+  background: var(--surface);
+  border-radius: 20px;
+}
+.emptyActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.emptyActions > button {
+  width: auto;
+  flex: none;
+  margin: 0;
+}
+.empty > svg {
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.empty h2 {
+  font-size: var(--text-lg);
+}
+.empty p {
+  margin: 16px 0 24px;
+  color: var(--text);
+}
+.emptyImage {
+  display: block;
+  width: 488px;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+.skeleton {
+  min-height: 312px;
+  border-radius: 20px;
+  background: var(--surface);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+}
+.skeleton div,
+.skeleton span {
+  background: #e8e9eb;
+  border-radius: 12px;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+.skeleton div {
+  grid-row: span 3;
+}
+.skeleton span {
+  height: 36px;
+}
+@keyframes pulse {
+  to {
+    opacity: 0.4;
+  }
+}
+@media (min-width: 1280px) {
+  .card {
+    min-height: 312px;
+  }
+}
+@media (max-width: 1279px) {
+  .layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 32px;
+  }
+  .card {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 20px;
+  }
+  .cover {
+    width: 180px;
+    height: 100%;
+    min-height: 240px;
+  }
+  .cardHeading {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cardHeading h2,
+  .cardHeading > span {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 24px;
+  }
+  .sidebar {
+    padding: 20px;
+  }
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .cover {
+    width: 100%;
+    height: 220px;
+    min-height: 0;
+  }
+  .cardHeading {
+    flex-direction: row;
+  }
+}
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+    gap: 24px;
+  }
+  .sidebar form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+  }
+  .locationLabel,
+  .location,
+  .sidebar h2,
+  .actions {
+    grid-column: 1 / -1;
+  }
+  .locationLabel {
+    margin-bottom: -8px;
+  }
+  .sidebar h2 {
+    margin: 8px 0 0;
+  }
+  .group {
+    margin: 0;
+  }
+  .actions {
+    margin-top: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .actions button {
+    padding-inline: 8px;
+    font-size: 14px;
+  }
+  .card {
+    padding: 20px;
+    gap: 20px;
+  }
+  .cover {
+    height: 240px;
+  }
+  .cardHeading {
+    flex-direction: column;
+  }
+  .description {
+    margin-block: 20px;
+  }
+  .more {
+    margin-top: 20px;
+  }
+  .skeleton {
+    grid-template-columns: 1fr;
+  }
 }
