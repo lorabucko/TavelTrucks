@@ -7,6 +7,7 @@ import { EMPTY_FILTERS, getCampers, getFilters, labels, priceLabel } from "@/lib
 import type { Filters } from "@/lib/types";
 import { Badges, ErrorState, Meta } from "./UI";
 import s from "./Catalog.module.css";
+import Loader from "./Loader";
 
 export default function Catalog() {
   const prefix = useId();
@@ -32,6 +33,7 @@ export default function Catalog() {
     setFilters({ ...EMPTY_FILTERS });
   }
   return <main id="main" className={`container ${s.layout}`}>
+    {query.isFetching && <Loader />}
     <h1 className="visually-hidden">Camper catalog</h1>
     <aside className={s.sidebar} aria-label="Filter campers">
       <form onSubmit={event => { event.preventDefault(); setFilters({ ...draft, location: draft.location.trim() }); }}>
@@ -53,7 +55,8 @@ export default function Catalog() {
     </aside>
     <section className={s.results} aria-label="Available campers" aria-busy={query.isFetching}>
       <div className="visually-hidden" role="status" aria-live="polite">
-        {query.isPending ? "Loading campers" : `${campers.length} of ${query.data?.pages[0]?.total ?? 0} campers loaded`}
+        {!query.isFetching &&
+  `${campers.length} of ${query.data?.pages[0]?.total ?? 0} campers loaded`}
       </div>
       {query.isPending && Array.from({ length: 4 }, (_, i) => <div key={i} className={s.skeleton}><div /><span /><span /><span /></div>)}
       {query.isError && !query.data && <ErrorState message={query.error.message} retry={() => query.refetch()} />}
@@ -66,7 +69,8 @@ export default function Catalog() {
   aria-hidden="true"
 />
         <h2>No campers found</h2>
-        <p>We couldn`t find any campers that match your filters.Try adjusting your search or clearing some filters.</p>
+        <p>We couldn`t find any campers that match your filters.<br />
+        Try adjusting your search or clearing some filters.</p>
         <div className={s.emptyActions}><button type="button" className="button button-outline" onClick={clear}><BsX size={22} aria-hidden="true" />Clear filters</button>
         <button type="button" onClick={() => {window.location.href = "https://tavel-trucks-nu.vercel.app/catalog/";}} className="button">View all campers</button>
       </div>

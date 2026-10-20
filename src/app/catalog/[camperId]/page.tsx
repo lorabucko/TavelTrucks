@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { API_URL, ApiError, getCamper } from "@/lib/api";
-import type { CamperPage } from "@/lib/types";
+import { API_URL, ApiError, getCamper, getReviews } from "@/lib/api";
+import type { CamperPage, Review } from "@/lib/types";
 import CamperDetail from "@/components/CamperDetail";
 
 type Props = { params: Promise<{ camperId: string }> };
@@ -34,5 +34,15 @@ export default async function CamperPage({ params }: Props) {
   let camper;
   try { camper = await getCamper(camperId); }
   catch (error) { if (error instanceof ApiError && error.status === 404) notFound(); throw error; }
-  return <CamperDetail camper={camper} />;
+  let reviews: Review[] = [];
+  let reviewsError: string | null = null;
+
+  try {
+    reviews = await getReviews(camperId);
+  } catch {
+    reviewsError =
+      "Could not load reviews. Please refresh the page to try again.";
+  }
+
+  return <CamperDetail camper={camper} reviews={reviews} reviewsError={reviewsError} />;
 }
