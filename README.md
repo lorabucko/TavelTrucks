@@ -1,8 +1,10 @@
-# TravelTrucks EN + UA
+<img width="1415" height="989" alt="image" src="https://github.com/user-attachments/assets/e802d8b0-a30b-42fd-a701-e1833f7f0c13" />
 
 # TravelTrucks
 
 An application for finding and booking campers, built according to the provided Figma design.
+
+<img width="1064" height="972" alt="image" src="https://github.com/user-attachments/assets/1f338025-9116-4505-8ab6-308089acf140" />
 
 ## Tech Stack
 
@@ -65,7 +67,7 @@ Responsive layout, accessible labels for fields and buttons, a skip link, visibl
 
 The test matrix and actual results are provided in `QA.md`.
 
-# TravelTrucks
+# TravelTrucks UA 
 
 Застосунок для пошуку й бронювання кемперів, реалізований за наданим макетом Figma.
 
